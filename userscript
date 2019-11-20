@@ -1,0 +1,105 @@
+// ==UserScript==
+// @name         Boystown waterfall
+// @namespace    HOAKHUYA
+// @include     *://boystownbezgvykp.onion/*
+// @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
+// @copyright   HOAKHUYA
+// @homepage    https://hoakhuya.com
+// @author       HOAKHUYA.COM
+// @description  NOPE.
+// ==/UserScript==
+
+// a function that loads jQuery and calls a callback function when jQuery has finished loading
+String.prototype.startWith = function (str) {
+    return typeof this.indexOf === 'function' && this.indexOf(str) === 0;
+};
+String.prototype.ismatch = function (regex) {
+    return typeof this.match === 'function' && this.match(regex) !== null;
+};
+
+
+var load,execute,loadAndExecute;load=function(a,b,c){var d;d=document.createElement("script"),d.setAttribute("src",a),b!=null&&d.addEventListener("load",b),c!=null&&d.addEventListener("error",c),document.body.appendChild(d);return d},execute=function(a){var b,c;typeof a=="function"?b="("+a+")();":b=a,c=document.createElement("script"),c.textContent=b,document.body.appendChild(c);return c},loadAndExecute=function(a,b){return load(a,function(){return execute(b)})};
+
+
+loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
+var thisurl = location.href;
+if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php')){
+  
+  var fixl =0;
+  $("a.row-item-link,a.topictitle").each(function() {
+    
+    if($(this).attr("href").match(/11450/) == null){
+       var mdcx ='';
+      
+      var urlc = $(this).attr("href");
+		
+		
+      if (fixl==0){$(".forumbg").not('.announcement').html('<hr style="padding-top: 80px;">');fixl++;}
+      $(".forumbg").not('.announcement').css("background-color","#fff");
+		$(".copyright").hide();
+		$.ajax({type: "GET",url: urlc,
+		success: function(data){
+          $(".copyright").html('');
+          var matkhau='';
+        var title = $(".copyright").html(data).find("h2.topic-title").text();
+          mdcx+='<center><strong><h1 style="color:#000;font-size: 311%;margin: 22px;">'+title+'</h1></strong></center>';
+		var img = data.match(/<img [^>]*src="http[^"]*"[^>]*>/gm);
+        try{var passwoc = $(".copyright").html(data).find("div.signature")[0].innerHTML;} catch (e){var passwoc ='';}
+        if (!passwoc) {var passwoc = $(".copyright").html(data).find("div.content")[0].innerHTML; }
+        passwoc = new DOMParser().parseFromString(passwoc, 'text/html').body.textContent.replace(/(\r\n|\n|\r|\s{2,})/gmi, " ")+"IKIKX".replace("  "," ");
+          
+        var regc = /(password.*IKIKX|passwd.*IKIKX|pass.*IKIKX|pw.*IKIKX)/gi;
+        
+        //realpas
+        // regpass
+        try{var regpass = passwoc.match(regc)[0];} catch (e){ var regpass ='';}
+        var chia=[];
+        chia = regpass.split(":");
+          
+        var hoakhuya = chia[0];
+        var mk2 = chia[1];
+         var mk3 = chia[2];
+          if(mk2==null) {chia = regpass.split(" ");hoakhuya = chia[0];mk2 = chia[1];}
+         if (mk3 !=mk2 && mk3 && mk3 !=hoakhuya) { var txt2 ='<span style="color:#000"> or </span>'+mk3;} else {var txt2='';}
+
+        try{var matkhau = mk2.replace("IKIKX","");} catch (e){ var matkhau ='';}
+
+          var endmk = matkhau.split(" ");
+          
+        if(endmk[0]!== 'undefined' && endmk[0] !== ""){var ormk = endmk[0];} else {var ormk = endmk[1];}
+          
+         if (ormk != matkhau && ormk !=""  ) { if (matkhau.length>50){var txt=txt2+'';} else{var txt= txt2+'<span style="color:#000"> or </span>'+matkhau+'</h2>';} } else {var txt=txt2+'';var ormk =matkhau;}
+          if(ormk){
+        mdcx +='<center><h2 style="color:red;"><span style="color:#000;">Password: </span>'+ormk+txt+'</center>';
+        
+          }
+
+        
+		if (img){
+            
+			for (r = 0; img.length> r; r++) {
+				var biwurl = img[r];
+				if (biwurl.match(/s19\.directupload\.net/) ==null){
+				var biwurl = biwurl.replace('class="postimage"','style="max-width:25%"');
+				mdcx +=biwurl;
+			}
+	}}
+        var data = $(".copyright").html(data).find("div.content");
+		data.find("a.postlink").each(function() {
+			var url =$(this).html();
+			if(url.match(/http/) && url.match(/\.jpg|\.png|img\ssrc|pixs\.ru|sup\.co\.il|jpg\.htm|png\.htm|picshare\.ru|imgur\.com/) ==null){mdcx += '<h2><a href="'+url+'" class="postlink">'+url+'</a></h2>';}
+          else {mdcx='';}
+		})
+
+
+			if(mdcx !=''){$(".forumbg").not('.announcement').append(mdcx+'<hr>');}
+			
+		}})
+
+    }
+  })
+}
+
+});
+
+// the guts of this userscript
