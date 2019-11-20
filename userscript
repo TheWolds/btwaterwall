@@ -3,13 +3,15 @@
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
+// @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
+// @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
+// @version     20191009
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
 // @description  NOPE.
 // ==/UserScript==
 
-// a function that loads jQuery and calls a callback function when jQuery has finished loading
 String.prototype.startWith = function (str) {
     return typeof this.indexOf === 'function' && this.indexOf(str) === 0;
 };
