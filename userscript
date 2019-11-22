@@ -81,7 +81,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
             
 			for (r = 0; img.length> r; r++) {
 				var biwurl = img[r];
-				if (biwurl.match(/s19\.directupload\.net/) ==null && biwurl.match(/dl\.free\.fr|minfil\.com|datafilehost\.com|anonfile\.com|rupan\.net|megaupload\.is|myfile\.is|karinto\.in/))  {
+				if (biwurl.match(/s19\.directupload\.net/) ==null)  {
 				var biwurl = biwurl.replace('class="postimage"','style="max-width:25%"');
 				mdcx +=biwurl;
 			}
@@ -89,7 +89,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
         var data = $(".copyright").html(data).find("div.content");
 		data.find("a.postlink").each(function() {
 			var url =$(this).html();
-			if(url.match(/http/) && url.match(/\.jpg|\.png|img\ssrc|pixs\.ru|sup\.co\.il|jpg\.htm|png\.htm|picshare\.ru|imgur\.com|imx\.to/) ==null){mdcx += '<h2><a href="'+url+'" class="postlink">'+url+'</a></h2>';}
+			if(url.match(/http/) && url.match(/dl\.free\.fr|minfil\.com|datafilehost\.com|anonfile\.com|rupan\.net|megaupload\.is|myfile\.is|karinto\.in/) && url.match(/\.jpg|\.png|img\ssrc|pixs\.ru|sup\.co\.il|jpg\.htm|png\.htm|picshare\.ru|imgur\.com|imx\.to/) ==null){mdcx += '<h2><a href="'+url+'" class="postlink">'+url+'</a></h2>';}
           else {mdcx='';}
 		})
 
