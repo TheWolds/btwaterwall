@@ -82,7 +82,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
 			for (r = 0; img.length> r; r++) {
 				var biwurl = img[r];
 				if (biwurl.match(/s19\.directupload\.net/) ==null)  {
-				var biwurl = biwurl.replace('class="postimage"','style="max-width:25%"');
+				var biwurl = biwurl.replace('class="postimage"','style="max-width:50%"');
 				mdcx +=biwurl;
 			}
 	}}
