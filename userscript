@@ -18,11 +18,11 @@ String.prototype.startWith = function (str) {
 String.prototype.ismatch = function (regex) {
     return typeof this.match === 'function' && this.match(regex) !== null;
 };
+var thisurl = location.href;
 
+if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php')){
 
 var load,execute,loadAndExecute;load=function(a,b,c){var d;d=document.createElement("script"),d.setAttribute("src",a),b!=null&&d.addEventListener("load",b),c!=null&&d.addEventListener("error",c),document.body.appendChild(d);return d},execute=function(a){var b,c;typeof a=="function"?b="("+a+")();":b=a,c=document.createElement("script"),c.textContent=b,document.body.appendChild(c);return c},loadAndExecute=function(a,b){return load(a,function(){return execute(b)})};
-var thisurl = location.href;
-if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php')){
 loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
 
 
