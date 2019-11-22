@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         Boystown waterfall 5
+// @name         Boystown waterfall 7
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @version     20191210
+// @version     20191211
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -15,13 +15,13 @@
 String.prototype.startWith = function (str) {
     return typeof this.indexOf === 'function' && this.indexOf(str) === 0;
 };
+var thisurl = location.href;
+
+if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php')){
 String.prototype.ismatch = function (regex) {
     return typeof this.match === 'function' && this.match(regex) !== null;
 };
 function insertAfter(referenceNode, newNode) {referenceNode.parentNode.insertBefore(newNode);}
-var thisurl = location.href;
-
-if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php')){
 
   
 
