@@ -5,7 +5,7 @@
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @version     20191211
+// @version     2019121114
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -47,23 +47,27 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
   var isbusy=false;$(".copyright").hide();
   $(".copyright").attr("id","wrapcs");
   var regc = /(password\sfor\s|password\sis.*IKIKX|password.*IKIKX|passwd.*IKIKX|pass.*IKIKX|pw.*IKIKX)/gim;
+  var loader ='<center id="clodxx" bgcolor="#fff" style="width: 100%;user-select: none;height: 15%;position: absolute;top: 40%;"><span class="spinner"></span></center>';
+  $('head').append('<style> @keyframes spinner { to {transform: rotate(360deg);} } .spinner:before { content: ""; box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; margin-top: -10px; margin-left: -10px; border-radius: 50%; border: 2px solid #ccc; border-top-color: #000; animation: spinner .6s linear infinite; } </style>');
   $("a.row-item-link,a.topictitle").each(function() {
-    var $this=$(this);
+    var $this=$(this); 
      $(".copyright").html('');
+  $(".forumbg").not('.announcement').attr('style','');
+  $(".forumbg").not('.announcement').attr('class','forumbgcs')
     var timer = window.setInterval(function(){
       if (isbusy==false){
         isbusy=true;
         window.clearInterval(timer);
     if($this.attr("href").match(/11450/) == null){
-      
+     $(".forumbgcs").not('.announcement').append(loader);
       
        
       
       var urlc = $this.attr("href");
 		
 		
-      if (fixl==0){$(".forumbg").not('.announcement').html('<hr style="padding-top: 80px;">');fixl++;}
-      $(".forumbg").not('.announcement').css("background-color","#fff");
+      if (fixl==0){$(".forumbgcs").not('.announcement').html(loader);fixl++;}
+      $(".forumbgcs").not('.announcement').css("background-color","#fff");
 
 		$.ajax({type: "GET",url: urlc,
 		success: function(data){
@@ -182,14 +186,14 @@ if(mdcx.length<3){
          	
               var lcisc = $("#wrapcs").find("div.postbody").html();
            
-              if(ormk == null || ormk=="") { $(".forumbg").not('.announcement').append('<center><strong><h1 style="color:#000;font-size: 311%;margin: 22px;">'+title+'</h1></strong></center>'+lcisc+'<hr>');}
-              else{$(".forumbg").not('.announcement').append(mdcx+'<hr>'); $(".forumbg").not('.announcement').html($(".forumbg").not('.announcement').html().replace("undefined",""));}
-            } else { $(".forumbg").not('.announcement').append(mdcx+'<hr>');$(".forumbg").not('.announcement').html($(".forumbg").not('.announcement').html().replace("undefined",""));}
+              if(ormk == null || ormk=="") { $(".forumbgcs").not('.announcement').append('<center><strong><h1 style="color:#000;font-size: 311%;margin: 22px;">'+title+'</h1></strong></center>'+lcisc+'<hr>');}
+              else{$(".forumbgcs").not('.announcement').append(mdcx+'<hr>'); $(".forumbgcs").not('.announcement').html($(".forumbgcs").not('.announcement').html().replace("undefined",""));}
+            } else { $(".forumbgcs").not('.announcement').append(mdcx+'<hr>');$(".forumbgcs").not('.announcement').html($(".forumbgcs").not('.announcement').html().replace("undefined",""));}
          
  
 
-			
-		}}).done(function() {isbusy=false;})
+		
+		}}).done(function() {$("#clodxx").remove();$(".forumbgcs").not('.announcement').css("background-color","#fff");isbusy=false;})
 
     }
     }
