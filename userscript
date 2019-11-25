@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         Boystown waterfall 8
+// @name         Boystown 8
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @version     2019121115
+// @version     2019121117
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -47,8 +47,8 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
   var isbusy=false;$(".copyright").hide();
   $(".copyright").attr("id","wrapcs");
   var regc = /(password\sfor\s|password\sis.*IKIKX|password.*IKIKX|passwd.*IKIKX|pass.*IKIKX|pw.*IKIKX)/gim;
-  var loader ='<center id="clodxx" bgcolor="#fff" style="width: 100%;user-select: none;height: 15%;position: absolute;top: 40%;"><span class="spinner"></span></center>';
-  $('head').append('<style> @keyframes spinner { to {transform: rotate(360deg);} } .spinner:before { content: ""; box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; margin-top: -10px; margin-left: -10px; border-radius: 50%; border: 2px solid #ccc; border-top-color: #000; animation: spinner .6s linear infinite; } </style>');
+  var loader ='<center id="clodxx" bgcolor="#fff" style="width: 100%;user-select: none;height: 15%;position: absolute;top: 190px;"><span class="spinner"></span></center>';
+  $('head').append('<style>h2{padding: 0 !important;margin: 0 !important;} .postlink{font-size:24px !important;} @keyframes spinner { to {transform: rotate(360deg);} } .spinner:before { content: ""; box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; margin-top: -10px; margin-left: -10px; border-radius: 50%; border: 2px solid #ccc; border-top-color: #000; animation: spinner .6s linear infinite; } </style>');
   $("a.row-item-link,a.topictitle").each(function() {
     var $this=$(this); 
      $(".copyright").html('');
@@ -93,7 +93,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
            var oldchia = chia.longest();
             if  (chia.length==1) {chia = regpass.split(" ");} 
             if (chia.longest().length>70){chia = regpass.split(" "); 
-                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|megaupload\.nz|\.avi|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
+                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|megaupload\.nz|\.avi|FILE[0-9]{3,}|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
               console.log(chia);            
             } 
         var hoakhuya = chia[0];
@@ -143,6 +143,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
           }
           
          if (ormk != matkhau && ormk !=""  ) { if (matkhau.length>50){var txt=txt2+'';} else if(matkhau.length<3 || matkhau=="is"){var txt= txt2+'<span style="color:#000"> or </span>'+matkhau+'</h2>';} } else if(ormk.length<3) {var txt=txt2+'';var ormk =matkhau;} else {var txt=txt2+'';try{var ormk =endmk.longest();} catch(e){ console.log('d');}}
+          if (ormk=='password') { ormk='';}
           if(ormk.length){
           ormk=ormk.replace("o;4bv4.]Index","o;4bv4.]");
         mdcx +='<center><h2 style="color:red;"><span style="color:#000;">Password: </span>'+ormk+txt+'</center>';
@@ -167,7 +168,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
           
        
 		})
-  
+if (ormk.length>3){
 if(mdcx.length<3){
          $("#wrapcs").not('.announcement').find(".first").remove();
           $("#wrapcs").not('.announcement').find(".author").remove();
@@ -197,8 +198,37 @@ if(mdcx.length<3){
               if(ormk == null || ormk=="") { $(".forumbgcs").not('.announcement').append('<center><strong><h1 style="color:#000;font-size: 311%;margin: 22px;">'+title+'</h1></strong></center>'+lcisc+'<hr>');}
               else{$(".forumbgcs").not('.announcement').append(mdcx+'<hr>'); $(".forumbgcs").not('.announcement').html($(".forumbgcs").not('.announcement').html().replace("undefined",""));}
             } else { $(".forumbgcs").not('.announcement').append(mdcx+'<hr>');$(".forumbgcs").not('.announcement').html($(".forumbgcs").not('.announcement').html().replace("undefined",""));}
-         
+} else {
+       
+       
+
+         $("#wrapcs").not('.announcement').find(".first").remove();
+          $("#wrapcs").not('.announcement').find(".author").remove();
+          $("#wrapcs").not('.announcement').find("br").remove();
+          $("#wrapcs").not('.announcement').find("hr").remove();
+          $("#wrapcs").not('.announcement').find("h3").remove();
+          $("#wrapcs").not('.announcement').find(".notice").remove();
+          $("#wrapcs").not('.announcement').find(".post-buttons").remove();
+          $("#wrapcs").find('a.postlink[href*=".jpg"]').remove();
+          $("#wrapcs").find('a.postlink[href*=".png"]').remove();
+          $('#wrapcs').find('a.postlink').each(function() {
+           var htmlx= $(this).html();
+            if (htmlx.match(/img\ssrc/) ==null){
+            $(this).empty();
+              $(this).html('<h2 style="border:unset;"><a href="'+htmlx+'" class="postlink">'+htmlx+'</a></h2>');
+            }
+            
+          })
+
+   var lcisc ='';document.querySelector("#wrapcs").querySelectorAll('div.postbody').forEach(function(el) { if (el.innerHTML.match(/(viewtopic\.php)/gmi)==null){lcisc+=el.innerHTML.replace('class="content"','class="content" style="font-size: 26px;"');} })
  
+$(".forumbgcs").not('.announcement').append('<center><strong><h1 style="color:#000;font-size: 311%;margin: 22px;">'+title+'</h1></strong></center>'+lcisc+'<hr>');
+
+           $(".forumbgcs").not('.announcement').find('a.postlink').each(function() {if ($(this).text()=="") { $(this).remove();}})
+          $(".forumbgcs").not('.announcement').find('div').each(function(){var cir = $(this).text().replace(/(\r\n|\n|\r|\s{2,})/gmi, "");console.log(cir.length); if (cir.length<4 ) {$(this).remove();console.log("remove");}})
+  
+}
+         
 
 		
 		}}).done(function() {$("#clodxx").remove();$(".forumbgcs").not('.announcement').css("background-color","#fff");isbusy=false;})
