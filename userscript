@@ -5,7 +5,7 @@
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @version     2019121117
+// @version     2019121118
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -93,7 +93,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
            var oldchia = chia.longest();
             if  (chia.length==1) {chia = regpass.split(" ");} 
             if (chia.longest().length>70){chia = regpass.split(" "); 
-                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|megaupload\.nz|\.avi|FILE[0-9]{3,}|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
+                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|\.jpg|megaupload\.nz|\.avi|FILE[0-9]{3,}|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
               console.log(chia);            
             } 
         var hoakhuya = chia[0];
@@ -121,7 +121,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
             var oldchia = chia.longest();
             if  (chia.length==1) {chia = regpass.split(" ");} 
             if (chia.longest().length>60){chia = regpass.split(" "); 
-                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|megaupload\.nz|\.avi|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
+                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|\.jpg|megaupload\.nz|\.avi|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
               console.log(chia);            
             } 
             
