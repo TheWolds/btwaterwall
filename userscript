@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         Boystown waterfall 7
+// @name         Boystown waterfall 8
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @version     2019121114
+// @version     2019121115
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -92,9 +92,14 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
        var chia = regpass.split(":");
            var oldchia = chia.longest();
             if  (chia.length==1) {chia = regpass.split(" ");} 
-      
+            if (chia.longest().length>70){chia = regpass.split(" "); 
+                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|megaupload\.nz|\.avi|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
+              console.log(chia);            
+            } 
         var hoakhuya = chia[0];
+            
        var mk2 = chia.longest();
+                
             var noslit=false;
          var mk3 = chia[2];
          if (mk2.match(/Boylovers|prevail/gi)){mk2 = oldchia.replace("password is",""); noslit = true;}
@@ -115,7 +120,10 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
         var chia = regpass.split(':');
             var oldchia = chia.longest();
             if  (chia.length==1) {chia = regpass.split(" ");} 
-
+            if (chia.longest().length>60){chia = regpass.split(" "); 
+                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|megaupload\.nz|\.avi|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
+              console.log(chia);            
+            } 
             
         var hoakhuya = chia[0];
         var mk2 = chia.longest();
@@ -136,7 +144,7 @@ loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
           
          if (ormk != matkhau && ormk !=""  ) { if (matkhau.length>50){var txt=txt2+'';} else if(matkhau.length<3 || matkhau=="is"){var txt= txt2+'<span style="color:#000"> or </span>'+matkhau+'</h2>';} } else if(ormk.length<3) {var txt=txt2+'';var ormk =matkhau;} else {var txt=txt2+'';try{var ormk =endmk.longest();} catch(e){ console.log('d');}}
           if(ormk.length){
-            
+          ormk=ormk.replace("o;4bv4.]Index","o;4bv4.]");
         mdcx +='<center><h2 style="color:red;"><span style="color:#000;">Password: </span>'+ormk+txt+'</center>';
         
           }
