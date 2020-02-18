@@ -1,14 +1,11 @@
 // ==UserScript==
-// @name         Boystown 8.1
+// @name         Boystown 8.2
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
-// @supportURL  https://github.com/TheWolds/btwaterwall/issues
-// @installURL  https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @setupURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @version     2019121119
+// @version     2019121154
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -45,7 +42,7 @@ var load,execute,loadAndExecute;load=function(a,b,c){var d;d=document.createElem
 loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
 
 
-  
+  $(".row.bg1.global-announce,.topiclist.forums").remove();
   var fixl =0;
   var isbusy=false;$(".copyright").hide();
   $(".copyright").attr("id","wrapcs");
