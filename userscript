@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Boystown 8
+// @name         Boystown 8.1
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
@@ -8,7 +8,7 @@
 // @setupURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @version     2019121118
+// @version     2019121119
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -20,7 +20,7 @@ String.prototype.startWith = function (str) {
 };
 var thisurl = location.href;
 
-if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php')){
+if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php') || thisurl.startWith('https://boystownbezgvykp.onion/viewforum.php')){
 String.prototype.ismatch = function (regex) {
     return typeof this.match === 'function' && this.match(regex) !== null;
 };
@@ -42,7 +42,7 @@ Array.prototype.longest=function() {
   
   
 var load,execute,loadAndExecute;load=function(a,b,c){var d;d=document.createElement("script"),d.setAttribute("src",a),b!=null&&d.addEventListener("load",b),c!=null&&d.addEventListener("error",c),document.body.appendChild(d);return d},execute=function(a){var b,c;typeof a=="function"?b="("+a+")();":b=a,c=document.createElement("script"),c.textContent=b,document.body.appendChild(c);return c},loadAndExecute=function(a,b){return load(a,function(){return execute(b)})};
-loadAndExecute("//code.jquery.com/jquery-3.4.1.min.js", function() {
+loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
 
 
   
