@@ -5,7 +5,7 @@
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121155
+// @version     2019121156
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -18,11 +18,11 @@ String.prototype.startWith = function (str) {
 };
 var thisurl = location.href;
 
-if (thisurl.startWith('http://boystownbezgvykp.onion')){
+if (thisurl.startWith('http://boystownbezgvykp.onion') || thisurl.startWith('https://boystownbezgvykp.onion')){
  function appupdate() {
     var curent = parseInt(Math.floor(Date.now() / 1000));
     var expiredcc = curent+84600;
-    var urlupdate = 'https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript?_=' + new Date().getTime();
+    var urlupdate = 'https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js?_=' + new Date().getTime();
 
 
 
