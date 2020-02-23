@@ -3,8 +3,8 @@
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
-// @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
-// @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/userscript
+// @downloadURL https://github.com/TheWolds/btwaterwall/raw/master/newboytown.user.js
+// @updateURL    https://github.com/TheWolds/btwaterwall/raw/master/newboytown.user.js
 // @version     2019121158
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
