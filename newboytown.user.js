@@ -2,24 +2,26 @@
 // @name         Boystown
 // @namespace    HOAKHUYA
 // @include     *://boystownbezgvykp.onion/*
+// @include     *://boytownhkn6uciye.onion/*
+// @include     *://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121160
+// @version     2019121162
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
 // @description  NOPE.
 // @grant         GM_xmlhttpRequest
 // ==/UserScript==
-//UDT#!<li>Cập nhật thư viện</li> <li>Thay đổi nguồn update</li>
+//UDT#!<li>Bổ sung một số tên miền của boystown</li>
 
 String.prototype.startWith = function (str) {
     return typeof this.indexOf === 'function' && this.indexOf(str) === 0;
 };
 var thisurl = location.href;
 
-if (thisurl.startWith('http://boystownbezgvykp.onion') || thisurl.startWith('https://boystownbezgvykp.onion')){
+if (thisurl.startWith('http://boystownbezgvykp.onion') || thisurl.startWith('https://boystownbezgvykp.onion') || thisurl.startWith('https://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion') || thisurl.startWith('https://boytownhkn6uciye.onion') || thisurl.startWith('http://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion') || thisurl.startWith('http://boytownhkn6uciye.onion')){
  function appupdate() {
     var curent = parseInt(Math.floor(Date.now() / 1000));
     var expiredcc = curent+84600;
@@ -74,7 +76,7 @@ GM_xmlhttpRequest({
 
 
 
-if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php') || thisurl.startWith('https://boystownbezgvykp.onion/viewforum.php')){
+if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php') || thisurl.startWith('https://boystownbezgvykp.onion/viewforum.php') || thisurl.startWith('http://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion/viewforum.php') || thisurl.startWith('https://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion/viewforum.php') || thisurl.startWith('http://boytownhkn6uciye.onion/viewforum.php') || thisurl.startWith('https://boytownhkn6uciye.onion/viewforum.php')){
 
 
 String.prototype.ismatch = function (regex) {
