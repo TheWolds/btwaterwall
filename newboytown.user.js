@@ -12,7 +12,7 @@
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121300
+// @version     2019121301
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -140,12 +140,12 @@ Array.prototype.longest=function() {
       unwrap('span[style="text-decoration:underline"]');
       document.querySelectorAll('a[href*="dlfree.html"]').forEach(el => el.remove());
       
-      if(document.querySelectorAll('img[src*=".imagebam"]')){bumofimgthmb= document.querySelectorAll('img[src*=".imagebam"]').length;} else {bumofimgthmb=0;}
+      try{
+      if(document.querySelector('img[src*=".imagebam"],img[src*="fastpic.ru"]')){bumofimgthmb= document.querySelectorAll('img[src*=".imagebam"],img[src*="fastpic.ru"]').length;} else {bumofimgthmb=0;}
     if (busy==false || nowcv==0){busy=true;
-    document.querySelectorAll('img[src*=".imagebam"]').forEach((cax) => {
+    document.querySelectorAll('img[src*=".imagebam"],img[src*="fastpic.ru"]').forEach((cax) => {
         if(cax.src.match(/thumb/)){
             GM_xmlhttpRequest({method: "GET",withCredentials:true,headers:    {
-              'referer':  'www.imagebam.com',
               'user-agent': navigator.userAgent,
               'accept': '*/*',
               'accept-encoding': 'gzip, deflate, br',
@@ -153,17 +153,18 @@ Array.prototype.longest=function() {
               'sec-fetch-dest': 'script',
               'sec-fetch-mode': 'no-cors',
               'sec-fetch-site': 'cross-site',
-              'dnt': 1,
-              'origin':   'www.imagebam.com'},
+              'dnt': 1},
               url: cax.parentNode.href,
               onload: function (response) { 
                 if(bumofimgthmb==nowcv) {busy=false;}
                 var container = document.implementation.createHTMLDocument().documentElement;
                 container.innerHTML=  response.responseText;
-                var imghtml= container.querySelector(".container-full img").src;
-                cax.src=imghtml;
-                console.log(cax);
-                cax.parentNode.href='javascript:void(0)';
+                var imghtml= container.querySelector(".container-full img,#picContainer img").src;
+                
+                document.body.innerHTML=document.body.innerHTML.replace(cax.src,imghtml);
+                document.body.innerHTML=document.body.innerHTML.replace(cax.parentNode.href,imghtml);
+                console.log(imghtml);
+                console.log(cax.src);
                 nowcv++;
               
               }
@@ -174,8 +175,7 @@ Array.prototype.longest=function() {
     })
       
     }
-      
-      
+      }  catch(e){var hh='';}
       
       var vizokvs;
         document.querySelectorAll('a[href]').forEach((cax) => {
@@ -207,7 +207,7 @@ Array.prototype.longest=function() {
               var extract = thesi[0];
                 var delctcirg=extract;
                    if (extract.length==9){ extract= extract.substr(1);}
-                    if (!extract.match(/vorite|leani|turin|camar|spongeb|open|ernally|eward|lovin|sterity|mbnail|nderful|prope|asure|love|follo|nonfile|brilliant|survive|sleeping|reminde|password|dscf|eeting|sharpened|swallow|killthe|filename|bayfile|vildogoo|report|cloaki|buttock|preview|download|pisshead|absolute|abstract|academic|accepted|accident|accuracy|accurate|achieved|acquired|activity|actually|addition|adequate|adjacent|adjusted|advanced|advisory|advocate|affected|aircraft|alliance|although|aluminum|analysi|announce|anything|anywhere|apparent|appendix|approach|approval|argument|artistic|assembly|assuming|athletic|attached|attitude|attorney|audience|autonomy|aviation|bachelor|bacteria|baseball|bathroom|becoming|benjamin|birthday|boundary|breaking|breeding|building|bulletin|busine|calendar|campaign|capacity|casualty|catching|category|catholic|cautiou|cellular|ceremony|chairman|champion|chemical|children|circular|civilian|clearing|clinical|clothing|collapse|colonial|colorful|commence|commerce|complain|complete|composed|compound|comprise|computer|conclude|concrete|conflict|confused|congre|consider|constant|consumer|continue|contract|contrary|contrast|convince|corridor|coverage|covering|creation|creative|criminal|critical|crossing|cultural|currency|customer|database|daughter|daylight|deadline|deciding|decision|decrease|deferred|definite|delicate|delivery|describe|designer|detailed|diabete|dialogue|diameter|directly|director|disabled|disaster|disclose|discount|discover|disorder|disposal|distance|distinct|district|dividend|division|doctrine|document|domestic|dominant|dominate|doubtful|dramatic|dressing|dropping|duration|dynamic|earning|economic|educated|efficacy|eighteen|election|electric|eligible|emerging|emphasi|employee|endeavor|engaging|engineer|enormou|entirely|entrance|envelope|equality|equation|estimate|evaluate|eventual|everyday|everyone|evidence|exchange|exciting|exercise|explicit|exposure|extended|external|facility|familiar|featured|feedback|festival|finished|firewall|flagship|flexible|floating|football|foothill|forecast|foremost|formerly|fourteen|fraction|franklin|frequent|friendly|frontier|function|generate|generou|genomic|goodwill|governor|graduate|graphic|grateful|guardian|guidance|handling|hardware|heritage|highland|historic|homele|homepage|hospital|humanity|identify|identity|ideology|imperial|incident|included|increase|indicate|indirect|industry|informal|informed|inherent|initiate|innocent|inspired|instance|integral|intended|interact|interest|interior|internal|interval|intimate|intranet|invasion|involved|isolated|judgment|judicial|junction|keyboard|landlord|language|laughter|learning|leverage|lifetime|lighting|likewise|limiting|literary|location|magazine|magnetic|maintain|majority|marginal|marriage|material|maturity|maximize|meantime|measured|medicine|medieval|memorial|merchant|midnight|military|minimize|minister|ministry|minority|mobility|modeling|moderate|momentum|monetary|moreover|mortgage|mountain|mounting|movement|multiple|national|negative|nineteen|northern|notebook|numerou|observer|occasion|offering|official|offshore|operator|opponent|opposite|optimism|optional|ordinary|organize|original|overcome|overhead|oversea|overview|painting|parallel|parental|patented|patience|peaceful|periodic|personal|persuade|petition|physical|pipeline|platform|pleasant|pleasure|politic|portable|portrait|position|positive|possible|powerful|practice|preciou|pregnant|presence|preserve|pressing|pressure|previou|prince|printing|priority|probable|probably|producer|profound|progre|property|proposal|prospect|protocol|provided|provider|province|publicly|purchase|pursuant|quantity|question|rational|reaction|received|receiver|recovery|regional|register|relation|relative|relevant|reliable|reliance|religion|remember|renowned|repeated|reporter|republic|required|research|reserved|resident|resigned|resource|response|restrict|revision|rigorou|romantic|sampling|scenario|schedule|scrutiny|seasonal|secondly|security|sensible|sentence|separate|sequence|sergeant|shipping|shortage|shoulder|simplify|situated|slightly|software|solution|somebody|somewhat|southern|speaking|specific|spectrum|sporting|standard|standing|standout|sterling|straight|strategy|strength|striking|struggle|stunning|suburban|suitable|superior|supposed|surgical|surprise|survival|sweeping|swimming|symbolic|sympathy|syndrome|tactical|tailored|takeover|tangible|taxation|taxpayer|teaching|tendency|terminal|terrible|thinking|thirteen|thorough|thousand|together|tomorrow|touching|tracking|training|transfer|traveled|treasury|triangle|tropical|turnover|ultimate|umbrella|universe|unlawful|unlikely|valuable|variable|vertical|victoria|brother|certainly|serviced|desperate|violence|volatile|warranty|weakne|weighted|whatever|whenever|wherever|wildlife|wirele|withdraw|woodland|workshop|captur|upload|yourself|[0-9]{4,9}/i)){
+                    if (!extract.match(/vorite|leani|turin|camar|spongeb|open|ernally|eward|lovin|fficult|lowing|covered|ference|sterity|mbnail|nderful|prope|asure|love|follo|nonfile|brilliant|survive|sleeping|reminde|password|dscf|eeting|sharpened|swallow|killthe|filename|bayfile|vildogoo|report|cloaki|buttock|preview|download|pisshead|absolute|abstract|academic|accepted|accident|accuracy|accurate|achieved|acquired|activity|actually|addition|adequate|adjacent|adjusted|advanced|advisory|advocate|affected|aircraft|alliance|although|aluminum|analysi|announce|anything|anywhere|apparent|appendix|approach|approval|argument|artistic|assembly|assuming|athletic|attached|attitude|attorney|audience|autonomy|aviation|bachelor|bacteria|baseball|bathroom|becoming|benjamin|birthday|boundary|breaking|breeding|building|bulletin|busine|calendar|campaign|capacity|casualty|catching|category|catholic|cautiou|cellular|ceremony|chairman|champion|chemical|children|circular|civilian|clearing|clinical|clothing|collapse|colonial|colorful|commence|commerce|complain|complete|composed|compound|comprise|computer|conclude|concrete|conflict|confused|congre|consider|constant|consumer|continue|contract|contrary|contrast|convince|corridor|coverage|covering|creation|creative|criminal|critical|crossing|cultural|currency|customer|database|daughter|daylight|deadline|deciding|decision|decrease|deferred|definite|delicate|delivery|describe|designer|detailed|diabete|dialogue|diameter|directly|director|disabled|disaster|disclose|discount|discover|disorder|disposal|distance|distinct|district|dividend|division|doctrine|document|domestic|dominant|dominate|doubtful|dramatic|dressing|dropping|duration|dynamic|earning|economic|educated|efficacy|eighteen|election|electric|eligible|emerging|emphasi|employee|endeavor|engaging|engineer|enormou|entirely|entrance|envelope|equality|equation|estimate|evaluate|eventual|everyday|everyone|evidence|exchange|exciting|exercise|explicit|exposure|extended|external|facility|familiar|featured|feedback|festival|finished|firewall|flagship|flexible|floating|football|foothill|forecast|foremost|formerly|fourteen|fraction|franklin|frequent|friendly|frontier|function|generate|generou|genomic|goodwill|governor|graduate|graphic|grateful|guardian|guidance|handling|hardware|heritage|highland|historic|homele|homepage|hospital|humanity|identify|identity|ideology|imperial|incident|included|increase|indicate|indirect|industry|informal|informed|inherent|initiate|innocent|inspired|instance|integral|intended|interact|interest|interior|internal|interval|intimate|intranet|invasion|involved|isolated|judgment|judicial|junction|keyboard|landlord|language|laughter|learning|leverage|lifetime|lighting|likewise|limiting|literary|location|magazine|magnetic|maintain|majority|marginal|marriage|material|maturity|maximize|meantime|measured|medicine|medieval|memorial|merchant|midnight|military|minimize|minister|ministry|minority|mobility|modeling|moderate|momentum|monetary|moreover|mortgage|mountain|mounting|movement|multiple|national|negative|nineteen|northern|notebook|numerou|observer|occasion|offering|official|offshore|operator|opponent|opposite|optimism|optional|ordinary|organize|original|overcome|overhead|oversea|overview|painting|parallel|parental|patented|patience|peaceful|periodic|personal|persuade|petition|physical|pipeline|platform|pleasant|pleasure|politic|portable|portrait|position|positive|possible|powerful|practice|preciou|pregnant|presence|preserve|pressing|pressure|previou|prince|printing|priority|probable|probably|producer|profound|progre|property|proposal|prospect|protocol|provided|provider|province|publicly|purchase|pursuant|quantity|question|rational|reaction|received|receiver|recovery|regional|register|relation|relative|relevant|reliable|reliance|religion|remember|renowned|repeated|reporter|republic|required|research|reserved|resident|resigned|resource|response|restrict|revision|rigorou|romantic|sampling|scenario|schedule|scrutiny|seasonal|secondly|security|sensible|sentence|separate|sequence|sergeant|shipping|shortage|shoulder|simplify|situated|slightly|software|solution|somebody|somewhat|southern|speaking|specific|spectrum|sporting|standard|standing|standout|sterling|straight|strategy|strength|striking|struggle|stunning|suburban|suitable|superior|supposed|surgical|surprise|survival|sweeping|swimming|symbolic|sympathy|syndrome|tactical|tailored|takeover|tangible|taxation|taxpayer|teaching|tendency|terminal|terrible|thinking|thirteen|thorough|thousand|together|tomorrow|touching|tracking|training|transfer|traveled|treasury|triangle|tropical|turnover|ultimate|umbrella|universe|unlawful|unlikely|valuable|variable|vertical|victoria|brother|certainly|serviced|desperate|violence|volatile|warranty|weakne|weighted|whatever|whenever|wherever|wildlife|wirele|withdraw|woodland|workshop|captur|upload|yourself|[0-9]{4,9}/i)){
                           if (cfv.match(/dl\.free\.fr\//)) {delctcirg=cfv;  } else{ delctcirg=extract;}
                         cax.innerHTML = cax.innerHTML.replace(delctcirg,"<a href=\"javascript:void(0)\" onclick=\"var s= document.createElement('form');s.target='_blank';s.className='ONLIYONESUV'; s.setAttribute('method','post'); s.setAttribute('action','http://dl.free.fr/_getfile.pl'); var i= document.createElement('input'); i.name='file'; i.value='/"+extract+"'; s.appendChild(i);document.body.appendChild(s); s.submit();document.querySelectorAll('.ONLIYONESUV').forEach(el=>el.remove());\">https://dl.free.fr/"+(delctcirg.substr(1))+"</a><br>");
                     }
