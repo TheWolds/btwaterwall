@@ -1,31 +1,31 @@
 // ==UserScript==
 // @name         Boystown
 // @namespace    HOAKHUYA
-// @include     *://boystownbezgvykp.onion/*
-// @include     *://boytownhkn6uciye.onion/*
-// @include     *://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion/*
+// @include     *://*.onion/*
+// @include     *://*.bayfiles.com/*
+// @include     *://*.anonfile.com/*
+// @include     *://*.megaupload.com/*
+// @include     *://*.solidfiles.com/*
+// @include     *://*.megaupload.is/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121162
+// @version     2019121200
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
 // @description  NOPE.
 // @grant         GM_xmlhttpRequest
 // ==/UserScript==
-//UDT#!<li>Bổ sung một số tên miền của boystown</li>
+//UDT#!<li>Khả năng tự động tải về link dl.free, datafilehost, myfile.is, anonfile.com,solidfiles.com... chỉ cần click là sẽ down liền, không bị giới hạn số lượt down</li><li>Nhận dạng mật khẩu tốt hơn</li>
 
-String.prototype.startWith = function (str) {
-    return typeof this.indexOf === 'function' && this.indexOf(str) === 0;
-};
-var thisurl = location.href;
 
-if (thisurl.startWith('http://boystownbezgvykp.onion') || thisurl.startWith('https://boystownbezgvykp.onion') || thisurl.startWith('https://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion') || thisurl.startWith('https://boytownhkn6uciye.onion') || thisurl.startWith('http://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion') || thisurl.startWith('http://boytownhkn6uciye.onion')){
+
+if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i)){
  function appupdate() {
     var curent = parseInt(Math.floor(Date.now() / 1000));
     var expiredcc = curent+84600;
-    var urlupdate = 'https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js?_=' + new Date().getTime();
+    var urlupdate = 'https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js';
 
 
 
@@ -74,9 +74,26 @@ GM_xmlhttpRequest({
   appupdate();
 }
 
+//##################################################
+window.addEventListener('load', function load() {
+if (location.href.match(/bayfiles\.com|anonfiles\.com/i)){
+  
+  location.replace(document.querySelector("#download-url").href);
+  setTimeout(function(){ close();}, 2000);
+}
+//############################
+if (location.href.match(/solidfiles\.com/i)){
+  if (document.querySelector("form.ng-pristine")){
+  document.querySelector("form.ng-pristine").submit();
+  } else if(document.querySelector('.box-content')) {
+    location.replace(document.querySelector('.box-content').querySelector('a:not([class])').href);
+    setTimeout(function(){ close();}, 2000);
+  }
+}
+})
+//##################################################
 
-
-if (thisurl.startWith('http://boystownbezgvykp.onion/viewforum.php') || thisurl.startWith('https://boystownbezgvykp.onion/viewforum.php') || thisurl.startWith('http://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion/viewforum.php') || thisurl.startWith('https://2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd.onion/viewforum.php') || thisurl.startWith('http://boytownhkn6uciye.onion/viewforum.php') || thisurl.startWith('https://boytownhkn6uciye.onion/viewforum.php')){
+if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i) && location.href.match(/viewforum/)){
 
 
 String.prototype.ismatch = function (regex) {
@@ -98,17 +115,60 @@ Array.prototype.longest=function() {
 
 
   
+    function driectlink(){
+    
+      var vizokvs;
+        document.querySelectorAll('a[href]').forEach((cax) => {
+                if(cax.href.match(/datafilehost\.com/)){
+                cax.href=cax.href.replace('https://www.datafilehost.com/d/','http://www.datafilehost.com/get.php?file=');
+                cax.setAttribute('target','_blank');
+                cax.setAttribute("rel",'nofollow noopener noreferrer');
+                }
+                if(cax.href.match(/dl\.free\.fr/)){
+                        var curenth= cax.href.match(/\W([a-z0-9]{8,9})(\W|\b|\n)?/i);
+                          try{if (typeof curenth[1] =='string'){
+                           var extract = curenth[1];
+                             if (extract.length==9){ extract= extract.substr(1);}   
+                            cax.href="javascript:void(0)";
+                          
+                             cax.setAttribute('onclick',"var s= document.createElement('form');s.className='ONLIYONESUV'; s.setAttribute('method','post');s.target='_blank'; s.setAttribute('action','http://dl.free.fr/_getfile.pl'); var i= document.createElement('input'); i.name='file'; i.value='/"+extract+"'; s.appendChild(i);document.body.appendChild(s); s.submit();document.querySelectorAll('.ONLIYONESUV').forEach(el => el.remove());");
+                        } } catch(e){ }
+                }
+        });
+      if(document.querySelector('div.content')){ vizokvs=document.querySelectorAll('div.content');} else{  vizokvs=document.querySelectorAll('div.forumbgcs');}
+        vizokvs.forEach((cax) => {
+                var allmatches=  cax.innerText.match(/(\n|\s|(^\/)dl\.free\.fr\/)([a-z0-9]{8,9})([^a-z0-9])/gi);
+      
+               try{ allmatches.forEach((cfv) => {
+                 
+                var thesi = (cfv.match(/[a-z0-9]{8,9}/i));
+                 if (typeof thesi[0] =='string'){
+                var extract = thesi[0];
+                var delctcirg=extract;
+                   if (extract.length==9){ extract= extract.substr(1);}
+                    if (!extract.match(/(camar|spongeb|prope|asure|brilliant|survive|sleeping|reminde||password|dscf|eeting|sharpened|swallow|killthe|filename|bayfile|vildogoo|report|cloaki|buttock|preview|download|pisshead|absolute|abstract|academic|accepted|accident|accuracy|accurate|achieved|acquired|activity|actually|addition|adequate|adjacent|adjusted|advanced|advisory|advocate|affected|aircraft|alliance|although|aluminum|analysi|announce|anything|anywhere|apparent|appendix|approach|approval|argument|artistic|assembly|assuming|athletic|attached|attitude|attorney|audience|autonomy|aviation|bachelor|bacteria|baseball|bathroom|becoming|benjamin|birthday|boundary|breaking|breeding|building|bulletin|busine|calendar|campaign|capacity|casualty|catching|category|catholic|cautiou|cellular|ceremony|chairman|champion|chemical|children|circular|civilian|clearing|clinical|clothing|collapse|colonial|colorful|commence|commerce|complain|complete|composed|compound|comprise|computer|conclude|concrete|conflict|confused|congre|consider|constant|consumer|continue|contract|contrary|contrast|convince|corridor|coverage|covering|creation|creative|criminal|critical|crossing|cultural|currency|customer|database|daughter|daylight|deadline|deciding|decision|decrease|deferred|definite|delicate|delivery|describe|designer|detailed|diabete|dialogue|diameter|directly|director|disabled|disaster|disclose|discount|discover|disorder|disposal|distance|distinct|district|dividend|division|doctrine|document|domestic|dominant|dominate|doubtful|dramatic|dressing|dropping|duration|dynamic|earning|economic|educated|efficacy|eighteen|election|electric|eligible|emerging|emphasi|employee|endeavor|engaging|engineer|enormou|entirely|entrance|envelope|equality|equation|estimate|evaluate|eventual|everyday|everyone|evidence|exchange|exciting|exercise|explicit|exposure|extended|external|facility|familiar|featured|feedback|festival|finished|firewall|flagship|flexible|floating|football|foothill|forecast|foremost|formerly|fourteen|fraction|franklin|frequent|friendly|frontier|function|generate|generou|genomic|goodwill|governor|graduate|graphic|grateful|guardian|guidance|handling|hardware|heritage|highland|historic|homele|homepage|hospital|humanity|identify|identity|ideology|imperial|incident|included|increase|indicate|indirect|industry|informal|informed|inherent|initiate|innocent|inspired|instance|integral|intended|interact|interest|interior|internal|interval|intimate|intranet|invasion|involved|isolated|judgment|judicial|junction|keyboard|landlord|language|laughter|learning|leverage|lifetime|lighting|likewise|limiting|literary|location|magazine|magnetic|maintain|majority|marginal|marriage|material|maturity|maximize|meantime|measured|medicine|medieval|memorial|merchant|midnight|military|minimize|minister|ministry|minority|mobility|modeling|moderate|momentum|monetary|moreover|mortgage|mountain|mounting|movement|multiple|national|negative|nineteen|northern|notebook|numerou|observer|occasion|offering|official|offshore|operator|opponent|opposite|optimism|optional|ordinary|organize|original|overcome|overhead|oversea|overview|painting|parallel|parental|patented|patience|peaceful|periodic|personal|persuade|petition|physical|pipeline|platform|pleasant|pleasure|politic|portable|portrait|position|positive|possible|powerful|practice|preciou|pregnant|presence|preserve|pressing|pressure|previou|prince|printing|priority|probable|probably|producer|profound|progre|property|proposal|prospect|protocol|provided|provider|province|publicly|purchase|pursuant|quantity|question|rational|reaction|received|receiver|recovery|regional|register|relation|relative|relevant|reliable|reliance|religion|remember|renowned|repeated|reporter|republic|required|research|reserved|resident|resigned|resource|response|restrict|revision|rigorou|romantic|sampling|scenario|schedule|scrutiny|seasonal|secondly|security|sensible|sentence|separate|sequence|sergeant|shipping|shortage|shoulder|simplify|situated|slightly|software|solution|somebody|somewhat|southern|speaking|specific|spectrum|sporting|standard|standing|standout|sterling|straight|strategy|strength|striking|struggle|stunning|suburban|suitable|superior|supposed|surgical|surprise|survival|sweeping|swimming|symbolic|sympathy|syndrome|tactical|tailored|takeover|tangible|taxation|taxpayer|teaching|tendency|terminal|terrible|thinking|thirteen|thorough|thousand|together|tomorrow|touching|tracking|training|transfer|traveled|treasury|triangle|tropical|turnover|ultimate|umbrella|universe|unlawful|unlikely|valuable|variable|vertical|victoria|brother|certainly|serviced|desperate|violence|volatile|warranty|weakne|weighted|whatever|whenever|wherever|wildlife|wirele|withdraw|woodland|workshop|captur|upload|yourself|[0-9]{4,9})s?/i)){
+                          if (cfv.match(/dl\.free\.fr\//)) {delctcirg=cfv;  }
+                        cax.innerHTML = cax.innerHTML.replace(delctcirg,"<a href=\"javascript:void(0)\" onclick=\"var s= document.createElement('form');s.target='_blank';s.className='ONLIYONESUV'; s.setAttribute('method','post'); s.setAttribute('action','http://dl.free.fr/_getfile.pl'); var i= document.createElement('input'); i.name='file'; i.value='/"+extract+"'; s.appendChild(i);document.body.appendChild(s); s.submit();document.querySelectorAll('.ONLIYONESUV').forEach(el => el.remove());\">"+delctcirg+'</a>');
+                    }
+              }
+            }) } catch(e){ }
+        })
+     setTimeout(function(){ driectlink(); }, 2500);
+
+    };
+  
+driectlink();
+
   
 var load,execute,loadAndExecute;load=function(a,b,c){var d;d=document.createElement("script"),d.setAttribute("src",a),b!=null&&d.addEventListener("load",b),c!=null&&d.addEventListener("error",c),document.body.appendChild(d);return d},execute=function(a){var b,c;typeof a=="function"?b="("+a+")();":b=a,c=document.createElement("script"),c.textContent=b,document.body.appendChild(c);return c},loadAndExecute=function(a,b){return load(a,function(){return execute(b)})};
 loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
 
-
-  $(".row.bg1.global-announce,.topiclist.forums").remove();
+  $(".row.bg1.global-announce,.topiclist.forums,li.sticky").remove();
   var fixl =0;
   var isbusy=false;$(".copyright").hide();
   $(".copyright").attr("id","wrapcs");
-  var regc = /(password\sfor\s|password\sis.*IKIKX|password.*IKIKX|passwd.*IKIKX|pass.*IKIKX|pw.*IKIKX)/gim;
-  var loader ='<center id="clodxx" bgcolor="#fff" style="width: 100%;user-select: none;height: 15%;position: absolute;top: 190px;"><span class="spinner"></span></center>';
+  var regc = /(Password\sfor\smy\sfiles\:.*IKIKX|password\sfor\s|password\sis.*IKIKX|password.*IKIKX|pass\:\s?.*IKIKX|passwd.*IKIKX|pass.*IKIKX|pw.*IKIKX)/gim;
+  var loader ='<center id="clodxx" bgcolor="#fff" style="width: 100%;pointer-events: none;user-select: none;height: 15%;position: fixed;top: 30%;"><span class="spinner"></span></center>';
   $('head').append('<style>h2{padding: 0 !important;margin: 0 !important;} .postlink{font-size:24px !important;} @keyframes spinner { to {transform: rotate(360deg);} } .spinner:before { content: ""; box-sizing: border-box; position: absolute; top: 50%; left: 50%; width: 60px; height: 60px; margin-top: -10px; margin-left: -10px; border-radius: 50%; border: 2px solid #ccc; border-top-color: #000; animation: spinner .6s linear infinite; } </style>');
   $("a.row-item-link,a.topictitle").each(function() {
     var $this=$(this); 
@@ -141,11 +201,13 @@ loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
           mdcx+='<center><strong><h1 style="color:#000;font-size: 311%;margin: 22px;">'+title+'</h1></strong></center>';
 		var img = data.match(/<img [^>]*src="http[^"]*"[^>]*>/gm);
         var passwoc = new DOMParser().parseFromString($("#wrapcs").find("div.content").html() , 'text/html').body.textContent.replace(/(\r\n|\n|\r|\s{2,})/gmi, " ")+"IKIKX";
+        var passprofole = new DOMParser().parseFromString($("#wrapcs").find("div.profile-dl_pass").html() , 'text/html').body.textContent.replace(/(\r\n|\n|\r|\s{2,})/gmi, " ")+"IKIKX";
         try{var passccsig = new DOMParser().parseFromString($("#wrapcs").find("div.signature").html().replace("post=","post:"), 'text/html').body.textContent.replace(/(\r\n|\n|\r|\s{2,})/gmi, " ")+"IKIKX";} catch (e) {var passccsig ='';}
         
         //realpas
         // regpass
         try{var regpass = passwoc.match(regc)[0]; console.log('USING METHOD 1: '+regpass); } catch (e){ var regpass ='';console.log("RESULT METHOD 1: nodata , switch to 2...");}
+          try{if (regpass.length==0) { regpass = passprofole.match(regc)[0];console.log('USING METHOD 2 PROFILE: '+regpass);}} catch (e){ var regpass ='';console.log("Data error");}
           try{if (regpass.length==0) { regpass = passccsig.match(regc)[0];console.log('USING METHOD 2: '+regpass);}} catch (e){ var regpass ='';console.log("Data error");}
     
           if (regpass!=""){
@@ -154,17 +216,17 @@ loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
            var oldchia = chia.longest();
             if  (chia.length==1) {chia = regpass.split(" ");} 
             if (chia.longest().length>70){chia = regpass.split(" "); 
-                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|\.jpg|megaupload\.nz|\.avi|FILE[0-9]{3,}|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
+                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(PLEASURE|\s?thanked|viewtopic\.php|\.rarfile|\.mp4|[a-z0-9]{75,}|http|openload\.cc|dl\.free\.fr|\.jpg|megaupload\.nz|\.avi|FILE[0-9]{3,}|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
               console.log(chia);            
             } 
         var hoakhuya = chia[0];
-            
+     
        var mk2 = chia.longest();
                 
             var noslit=false;
          var mk3 = chia[2];
          if (mk2.match(/Boylovers|prevail/gi)){mk2 = oldchia.replace("password is",""); noslit = true;}
-         if (mk3 !=mk2 && mk3 && mk3 !=hoakhuya) { var txt2 ='<span style="color:#000"> or </span>'+mk3;} else {var txt2='';}
+         if (mk3 !=mk2 && mk3 && mk3 !=hoakhuya && !mk3.match(/\s\-\s/)) { var txt2 ='<span style="color:#000"> or </span>'+mk3;} else {var txt2='';}
         try{var matkhau = mk2.replace("IKIKX","");} catch (e){ var matkhau ='';}
 
           if (noslit==false){var endmk = matkhau.split(" ");
@@ -182,7 +244,7 @@ loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
             var oldchia = chia.longest();
             if  (chia.length==1) {chia = regpass.split(" ");} 
             if (chia.longest().length>60){chia = regpass.split(" "); 
-                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(\.mp4|[a-z0-9]{75,}|http|dl\.free\.fr|\.jpg|megaupload\.nz|\.avi|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
+                chia = chia.filter(function(_item) {return _item.length>=4 && !_item.match(/(PLEASURE|\s?thanked|viewtopic\.php|\.rarfile|\.mp4|[a-z0-9]{75,}|http|openload\.cc|dl\.free\.fr|\.jpg|megaupload\.nz|\.avi|\.mov|\.wmv|\.3gp|\.mkv|[0-9]{2}h[0-9]{2}m[0-9]{2}s|DSCF[0-9]{4,}|[0-9]{2}\.[0-9]{2}\.[0-9]{4}|Updated|日本帥|Pc\_[0-9]{4,})/gim);});
               console.log(chia);            
             } 
             
@@ -207,6 +269,9 @@ loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
           if (ormk=='password') { ormk='';}
           if(ormk.length){
           ormk=ormk.replace("o;4bv4.]Index","o;4bv4.]");
+            if (ormk.match(/QueenBV4/)){ormk=ormk.replace('copy)',''); }
+            if (ormk.match(/Claus7\/octRCnV/)){ormk='oYE9YFlDfCount-rfi '+ormk; }
+            if (ormk.match(/Neverland\/\%6/)){ormk+=':124©657&&__"?##+~§"'; }
         mdcx +='<center><h2 style="color:red;"><span style="color:#000;">Password: </span>'+ormk+txt+'</center>';
         
           }
@@ -250,6 +315,7 @@ if(mdcx.length<3){
             if (htmlx.match(/img\ssrc/) ==null){
             $(this).empty();
               $(this).html('<br><h2 style="border:unset;"><a href="'+htmlx+'" class="postlink">'+htmlx+'</a></h2><br>');
+             
             }
             
           })
@@ -277,6 +343,7 @@ if(mdcx.length<3){
             if (htmlx.match(/img\ssrc/) ==null){
             $(this).empty();
               $(this).html('<h2 style="border:unset;"><a href="'+htmlx+'" class="postlink">'+htmlx+'</a></h2>');
+      
             }
             
           })
@@ -292,11 +359,11 @@ $(".forumbgcs").not('.announcement').append('<center><strong><h1 style="color:#0
          
 
 		
-		}}).done(function() {$("#clodxx").remove();$(".forumbgcs").not('.announcement').css("background-color","#fff");isbusy=false;})
+		}}).done(function() {$("#clodxx").remove();$(".forumbgcs").not('.announcement').css("background-color","#fff");isbusy=false; })
 
     }
     }
-      },500); 
+      },5); 
   })
   
   //ccd
