@@ -136,22 +136,33 @@ Array.prototype.longest=function() {
         item.outerHTML = item.innerText;
     })
 }
-  var busy=false;
     function driectlink(){
       unwrap('span[style="text-decoration:underline"]');
       document.querySelectorAll('a[href*="dlfree.html"]').forEach(el => el.remove());
-      if(document.querySelectorAll('img[src*=".imagebam"]')){bumofimgthmb= document.querySelectorAll('img[src*=".imagebam"]').length;nowcv=0;} else {bumofimgthmb=0;nowcv=0;}
-    if (busy==false){busy=true;
+      
+      if(document.querySelectorAll('img[src*=".imagebam"]')){bumofimgthmb= document.querySelectorAll('img[src*=".imagebam"]').length;} else {bumofimgthmb=0;}
+    if (busy==false || nowcv==0){busy=true;
     document.querySelectorAll('img[src*=".imagebam"]').forEach((cax) => {
-        if(cax.src.match(/\.thumb/)){
-            GM_xmlhttpRequest({
-              method: "GET",
+        if(cax.src.match(/thumb/)){
+            GM_xmlhttpRequest({method: "GET",withCredentials:true,headers:    {
+              'referer':  'www.imagebam.com',
+              'user-agent': navigator.userAgent,
+              'accept': '*/*',
+              'accept-encoding': 'gzip, deflate, br',
+              'connection': 'keep-alive',
+              'sec-fetch-dest': 'script',
+              'sec-fetch-mode': 'no-cors',
+              'sec-fetch-site': 'cross-site',
+              'dnt': 1,
+              'origin':   'www.imagebam.com'},
               url: cax.parentNode.href,
               onload: function (response) { 
                 if(bumofimgthmb==nowcv) {busy=false;}
                 var container = document.implementation.createHTMLDocument().documentElement;
                 container.innerHTML=  response.responseText;
-                cax.src=container.querySelector(".container-full img").src;
+                var imghtml= container.querySelector(".container-full img").src;
+                cax.src=imghtml;
+                console.log(cax);
                 cax.parentNode.href='javascript:void(0)';
                 nowcv++;
               
@@ -168,7 +179,7 @@ Array.prototype.longest=function() {
       
       var vizokvs;
         document.querySelectorAll('a[href]').forEach((cax) => {
-                if (cax.classList.contains('noeditoricag')) { return false;}{
+                if (cax.classList.contains('noeditoricag')) { vizokvs=vizokvs;}{
                 if(!cax.href.match(location.host)){cax.setAttribute('target','_blank');cax.setAttribute("rel",'nofollow noopener noreferrer');cax.className="noeditoricag";}
                 if(cax.href.match(/datafilehost\.com/)){
                 cax.href=cax.href.replace('https://www.datafilehost.com/d/','http://www.datafilehost.com/get.php?file=');
@@ -204,17 +215,10 @@ Array.prototype.longest=function() {
             }) } catch(e){ }
         })
      
-
+        setTimeout(function(){ driectlink();  }, 5000);
     };
-  
-var domload=false;
-document.addEventListener("DOMNodeInserted", function() {
-if (domload== false){domload=true;clearTimeout(csccoss);var csccoss = setTimeout(function(){ driectlink(); domload=false; }, 500);}
+  driectlink();
 
-})
-if(location.href.match(/viewtopic/)){
-for(i=0; i<100; i++) {try{window.clearInterval(i);window.clearTimeout(i);} catch(e){var cvk='';} }
-}
   
 var load,execute,loadAndExecute;load=function(a,b,c){var d;d=document.createElement("script"),d.setAttribute("src",a),b!=null&&d.addEventListener("load",b),c!=null&&d.addEventListener("error",c),document.body.appendChild(d);return d},execute=function(a){var b,c;typeof a=="function"?b="("+a+")();":b=a,c=document.createElement("script"),c.textContent=b,document.body.appendChild(c);return c},loadAndExecute=function(a,b){return load(a,function(){return execute(b)})};
 loadAndExecute("https://code.jquery.com/jquery-3.4.1.min.js", function() {
