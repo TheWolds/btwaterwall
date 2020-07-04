@@ -6,11 +6,13 @@
 // @include     *://*.anonfile.com/*
 // @include     *://*.megaupload.com/*
 // @include     *://*.solidfiles.com/*
+// @include     *://1fichier.com/*
+// @include     *://*.1fichier.com/*
 // @include     *://*.megaupload.is/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121200
+// @version     2019121220
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -90,10 +92,20 @@ if (location.href.match(/solidfiles\.com/i)){
     setTimeout(function(){ close();}, 2000);
   }
 }
+if (location.href.match(/1fichier\.com/i)){
+  if(document.querySelector("form.alc")){
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]'); for (var i = 0; i < checkboxes.length; i++) { if (checkboxes[i].type == 'checkbox') checkboxes[i].checked = true; }
+  document.querySelector("form.alc").submit();
+  } else if (document.querySelector('a.ok.btn-general')){
+  location.href=document.querySelector('a.ok.btn-general').href;
+  setTimeout(function(){ close();}, 2000);
+  }
+}
+//############################
 })
 //##################################################
 
-if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i) && location.href.match(/viewforum/)){
+if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i) && location.href.match(/viewforum|viewtopic/)){
 
 
 String.prototype.ismatch = function (regex) {
@@ -119,13 +131,12 @@ Array.prototype.longest=function() {
     
       var vizokvs;
         document.querySelectorAll('a[href]').forEach((cax) => {
+                if(!cax.href.match(location.host)){cax.setAttribute('target','_blank');cax.setAttribute("rel",'nofollow noopener noreferrer');}
                 if(cax.href.match(/datafilehost\.com/)){
                 cax.href=cax.href.replace('https://www.datafilehost.com/d/','http://www.datafilehost.com/get.php?file=');
-                cax.setAttribute('target','_blank');
-                cax.setAttribute("rel",'nofollow noopener noreferrer');
                 }
                 if(cax.href.match(/dl\.free\.fr/)){
-                        var curenth= cax.href.match(/\W([a-z0-9]{8,9})(\W|\b|\n)?/i);
+                        var curenth= cax.href.match(/\W([a-z0-9]{8,9})(\W|\b|\n|\s)?/i);
                           try{if (typeof curenth[1] =='string'){
                            var extract = curenth[1];
                              if (extract.length==9){ extract= extract.substr(1);}   
@@ -153,7 +164,7 @@ Array.prototype.longest=function() {
               }
             }) } catch(e){ }
         })
-     setTimeout(function(){ driectlink(); }, 2500);
+     setTimeout(function(){ driectlink(); }, 3000);
 
     };
   
