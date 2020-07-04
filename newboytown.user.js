@@ -12,7 +12,7 @@
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121220
+// @version     2019121240
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -126,9 +126,37 @@ Array.prototype.longest=function() {
 }
 
 
-  
+    var busy=false;
+    var bumofimgthmb;
+    var nowcv=0;
     function driectlink(){
+      
+      if(document.querySelectorAll('img[src*=".imagebam"]')){bumofimgthmb= document.querySelectorAll('img[src*=".imagebam"]').length;nowcv=0;} else {bumofimgthmb=0;nowcv=0;}
+    if (busy==false){busy=true;
+    document.querySelectorAll('img[src*=".imagebam"]').forEach((cax) => {
+        if(cax.src.match(/\.thumb/)){
+            GM_xmlhttpRequest({
+              method: "GET",
+              url: cax.parentNode.href,
+              onload: function (response) { 
+                if(bumofimgthmb==nowcv) {busy=false;}
+                var container = document.implementation.createHTMLDocument().documentElement;
+                container.innerHTML=  response.responseText;
+                cax.src=container.querySelector(".container-full img").src;
+                cax.parentNode.href='javascript:void(0)';
+                nowcv++;
+              
+              }
+              
+            })
+        }
     
+    })
+      
+    }
+      
+      
+      
       var vizokvs;
         document.querySelectorAll('a[href]').forEach((cax) => {
                 if(!cax.href.match(location.host)){cax.setAttribute('target','_blank');cax.setAttribute("rel",'nofollow noopener noreferrer');}
