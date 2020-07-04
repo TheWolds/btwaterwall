@@ -138,7 +138,7 @@ Array.prototype.longest=function() {
 }
   
     function driectlink(){
-      unwrap('span');
+      unwrap('span[style="text-decoration:underline"]');
       document.querySelectorAll('a[href*="dlfree.html"]').forEach(el => el.remove());
       if(document.querySelectorAll('img[src*=".imagebam"]')){bumofimgthmb= document.querySelectorAll('img[src*=".imagebam"]').length;nowcv=0;} else {bumofimgthmb=0;nowcv=0;}
     if (busy==false){busy=true;
