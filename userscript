@@ -10,7 +10,7 @@
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121180
+// @version     2019121200
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -25,7 +25,7 @@ if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bg
  function appupdate() {
     var curent = parseInt(Math.floor(Date.now() / 1000));
     var expiredcc = curent+84600;
-    var urlupdate = 'https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js?_=' + new Date().getTime();
+    var urlupdate = 'https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js?cc=' + new Date().getTime();
 
 
 
@@ -93,7 +93,7 @@ if (location.href.match(/solidfiles\.com/i)){
 })
 //##################################################
 
-if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i)){
+if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i) && location.href.match(/viewforum/)){
 
 
 String.prototype.ismatch = function (regex) {
