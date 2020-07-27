@@ -6,13 +6,11 @@
 // @include     *://*.anonfile.com/*
 // @include     *://*.megaupload.com/*
 // @include     *://*.solidfiles.com/*
-// @include     *://1fichier.com/*
-// @include     *://*.1fichier.com/*
 // @include     *://*.megaupload.is/*
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121301
+// @version     2019121200
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -76,36 +74,8 @@ GM_xmlhttpRequest({
   appupdate();
 }
 
-//##################################################
-window.addEventListener('load', function load() {
-if (location.href.match(/bayfiles\.com|anonfiles\.com/i)){
-  
-  location.replace(document.querySelector("#download-url").href);
-  setTimeout(function(){ close();}, 2000);
-}
-//############################
-if (location.href.match(/solidfiles\.com/i)){
-  if (document.querySelector("form.ng-pristine")){
-  document.querySelector("form.ng-pristine").submit();
-  } else if(document.querySelector('.box-content')) {
-    location.replace(document.querySelector('.box-content').querySelector('a:not([class])').href);
-    setTimeout(function(){ close();}, 2000);
-  }
-}
-if (location.href.match(/1fichier\.com/i)){
-  if(document.querySelector("form.alc")){
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]'); for (var i = 0; i < checkboxes.length; i++) { if (checkboxes[i].type == 'checkbox') checkboxes[i].checked = true; }
-  document.querySelector("form.alc").submit();
-  } else if (document.querySelector('a.ok.btn-general')){
-  location.href=document.querySelector('a.ok.btn-general').href;
-  setTimeout(function(){ close();}, 2000);
-  }
-}
-//############################
-})
-//##################################################
 
-if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i) && location.href.match(/viewforum|viewtopic/)){
+if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i) && location.href.match(/viewforum/)){
 
 
 String.prototype.ismatch = function (regex) {
@@ -126,98 +96,6 @@ Array.prototype.longest=function() {
 }
 
 
-    var busy=false;
-    var bumofimgthmb;
-    var nowcv=0;
-  
-  function unwrap(selector) {
-    var nodelist = document.querySelectorAll(selector);
-    Array.prototype.forEach.call(nodelist, function(item,i){
-        item.outerHTML = item.innerText;
-    })
-}
-    function driectlink(){
-      unwrap('span[style="text-decoration:underline"]');
-      document.querySelectorAll('a[href*="dlfree.html"]').forEach(el => el.remove());
-      
-      try{
-      if(document.querySelector('img[src*=".imagebam"],img[src*="fastpic.ru"]')){bumofimgthmb= document.querySelectorAll('img[src*=".imagebam"],img[src*="fastpic.ru"]').length;} else {bumofimgthmb=0;}
-    if (busy==false || nowcv==0){busy=true;
-    document.querySelectorAll('img[src*=".imagebam"],img[src*="fastpic.ru"]').forEach((cax) => {
-        if(cax.src.match(/thumb/)){
-            GM_xmlhttpRequest({method: "GET",withCredentials:true,headers:    {
-              'user-agent': navigator.userAgent,
-              'accept': '*/*',
-              'accept-encoding': 'gzip, deflate, br',
-              'connection': 'keep-alive',
-              'sec-fetch-dest': 'script',
-              'sec-fetch-mode': 'no-cors',
-              'sec-fetch-site': 'cross-site',
-              'dnt': 1},
-              url: cax.parentNode.href,
-              onload: function (response) { 
-                if(bumofimgthmb==nowcv) {busy=false;}
-                var container = document.implementation.createHTMLDocument().documentElement;
-                container.innerHTML=  response.responseText;
-                var imghtml= container.querySelector(".container-full img,#picContainer img").src;
-                
-                document.body.innerHTML=document.body.innerHTML.replace(cax.src,imghtml);
-                document.body.innerHTML=document.body.innerHTML.replace(cax.parentNode.href,imghtml);
-                console.log(imghtml);
-                console.log(cax.src);
-                nowcv++;
-              
-              }
-              
-            })
-        }
-    
-    })
-      
-    }
-      }  catch(e){var hh='';}
-      
-      var vizokvs;
-        document.querySelectorAll('a[href]').forEach((cax) => {
-                if (cax.classList.contains('noeditoricag')) { vizokvs=vizokvs;}{
-                if(!cax.href.match(location.host)){cax.setAttribute('target','_blank');cax.setAttribute("rel",'nofollow noopener noreferrer');cax.className="noeditoricag";}
-                if(cax.href.match(/datafilehost\.com/)){
-                cax.href=cax.href.replace('https://www.datafilehost.com/d/','http://www.datafilehost.com/get.php?file=');
-                }
-                if(cax.href.match(/dl\.free\.fr/)){
-                        var curenth= cax.href.match(/\W([a-z0-9]{8,9})(\W|\b|\n|\s)?/i);
-                          try{if (typeof curenth[1] =='string'){
-                           var extract = curenth[1];
-                             if (extract.length==9){ extract= extract.substr(1);}   
-                            cax.href="javascript:void(0)";
-                          
-                             cax.setAttribute('onclick',"var s= document.createElement('form');s.className='ONLIYONESUV'; s.setAttribute('method','post');s.target='_blank'; s.setAttribute('action','http://dl.free.fr/_getfile.pl'); var i= document.createElement('input'); i.name='file'; i.value='/"+extract+"'; s.appendChild(i);document.body.appendChild(s); s.submit();document.querySelectorAll('.ONLIYONESUV').forEach(el => el.remove());");
-                        } } catch(e){ }
-                }
-                }
-        });
-      if(document.querySelector('div.content')){ vizokvs=document.querySelectorAll('div.content');} else{  vizokvs=document.querySelectorAll('div.forumbgcs');}
-        vizokvs.forEach((cax) => {
-                var allmatches=  cax.innerText.match(/(\W|\n|\r|\b)([a-z0-9]{8,9})(\n|\n\r?|\s)/gi);
-
-               try{ allmatches.forEach((cfv) => {
-                 
-                var thesi = cfv.match(/[a-z0-9]{8,9}/i);
-                 if (typeof thesi[0] =='string'){
-              var extract = thesi[0];
-                var delctcirg=extract;
-                   if (extract.length==9){ extract= extract.substr(1);}
-                    if (!extract.match(/vorite|leani|turin|camar|spongeb|open|ernally|eward|lovin|fficult|lowing|covered|ference|sterity|mbnail|nderful|prope|asure|love|follo|nonfile|brilliant|survive|sleeping|reminde|password|dscf|eeting|sharpened|swallow|killthe|filename|bayfile|vildogoo|report|cloaki|buttock|preview|download|pisshead|absolute|abstract|academic|accepted|accident|accuracy|accurate|achieved|acquired|activity|actually|addition|adequate|adjacent|adjusted|advanced|advisory|advocate|affected|aircraft|alliance|although|aluminum|analysi|announce|anything|anywhere|apparent|appendix|approach|approval|argument|artistic|assembly|assuming|athletic|attached|attitude|attorney|audience|autonomy|aviation|bachelor|bacteria|baseball|bathroom|becoming|benjamin|birthday|boundary|breaking|breeding|building|bulletin|busine|calendar|campaign|capacity|casualty|catching|category|catholic|cautiou|cellular|ceremony|chairman|champion|chemical|children|circular|civilian|clearing|clinical|clothing|collapse|colonial|colorful|commence|commerce|complain|complete|composed|compound|comprise|computer|conclude|concrete|conflict|confused|congre|consider|constant|consumer|continue|contract|contrary|contrast|convince|corridor|coverage|covering|creation|creative|criminal|critical|crossing|cultural|currency|customer|database|daughter|daylight|deadline|deciding|decision|decrease|deferred|definite|delicate|delivery|describe|designer|detailed|diabete|dialogue|diameter|directly|director|disabled|disaster|disclose|discount|discover|disorder|disposal|distance|distinct|district|dividend|division|doctrine|document|domestic|dominant|dominate|doubtful|dramatic|dressing|dropping|duration|dynamic|earning|economic|educated|efficacy|eighteen|election|electric|eligible|emerging|emphasi|employee|endeavor|engaging|engineer|enormou|entirely|entrance|envelope|equality|equation|estimate|evaluate|eventual|everyday|everyone|evidence|exchange|exciting|exercise|explicit|exposure|extended|external|facility|familiar|featured|feedback|festival|finished|firewall|flagship|flexible|floating|football|foothill|forecast|foremost|formerly|fourteen|fraction|franklin|frequent|friendly|frontier|function|generate|generou|genomic|goodwill|governor|graduate|graphic|grateful|guardian|guidance|handling|hardware|heritage|highland|historic|homele|homepage|hospital|humanity|identify|identity|ideology|imperial|incident|included|increase|indicate|indirect|industry|informal|informed|inherent|initiate|innocent|inspired|instance|integral|intended|interact|interest|interior|internal|interval|intimate|intranet|invasion|involved|isolated|judgment|judicial|junction|keyboard|landlord|language|laughter|learning|leverage|lifetime|lighting|likewise|limiting|literary|location|magazine|magnetic|maintain|majority|marginal|marriage|material|maturity|maximize|meantime|measured|medicine|medieval|memorial|merchant|midnight|military|minimize|minister|ministry|minority|mobility|modeling|moderate|momentum|monetary|moreover|mortgage|mountain|mounting|movement|multiple|national|negative|nineteen|northern|notebook|numerou|observer|occasion|offering|official|offshore|operator|opponent|opposite|optimism|optional|ordinary|organize|original|overcome|overhead|oversea|overview|painting|parallel|parental|patented|patience|peaceful|periodic|personal|persuade|petition|physical|pipeline|platform|pleasant|pleasure|politic|portable|portrait|position|positive|possible|powerful|practice|preciou|pregnant|presence|preserve|pressing|pressure|previou|prince|printing|priority|probable|probably|producer|profound|progre|property|proposal|prospect|protocol|provided|provider|province|publicly|purchase|pursuant|quantity|question|rational|reaction|received|receiver|recovery|regional|register|relation|relative|relevant|reliable|reliance|religion|remember|renowned|repeated|reporter|republic|required|research|reserved|resident|resigned|resource|response|restrict|revision|rigorou|romantic|sampling|scenario|schedule|scrutiny|seasonal|secondly|security|sensible|sentence|separate|sequence|sergeant|shipping|shortage|shoulder|simplify|situated|slightly|software|solution|somebody|somewhat|southern|speaking|specific|spectrum|sporting|standard|standing|standout|sterling|straight|strategy|strength|striking|struggle|stunning|suburban|suitable|superior|supposed|surgical|surprise|survival|sweeping|swimming|symbolic|sympathy|syndrome|tactical|tailored|takeover|tangible|taxation|taxpayer|teaching|tendency|terminal|terrible|thinking|thirteen|thorough|thousand|together|tomorrow|touching|tracking|training|transfer|traveled|treasury|triangle|tropical|turnover|ultimate|umbrella|universe|unlawful|unlikely|valuable|variable|vertical|victoria|brother|certainly|serviced|desperate|violence|volatile|warranty|weakne|weighted|whatever|whenever|wherever|wildlife|wirele|withdraw|woodland|workshop|captur|upload|yourself|[0-9]{4,9}/i)){
-                          if (cfv.match(/dl\.free\.fr\//)) {delctcirg=cfv;  } else{ delctcirg=extract;}
-                        cax.innerHTML = cax.innerHTML.replace(delctcirg,"<a href=\"javascript:void(0)\" onclick=\"var s= document.createElement('form');s.target='_blank';s.className='ONLIYONESUV'; s.setAttribute('method','post'); s.setAttribute('action','http://dl.free.fr/_getfile.pl'); var i= document.createElement('input'); i.name='file'; i.value='/"+extract+"'; s.appendChild(i);document.body.appendChild(s); s.submit();document.querySelectorAll('.ONLIYONESUV').forEach(el=>el.remove());\">https://dl.free.fr/"+(delctcirg.substr(1))+"</a><br>");
-                    }
-              }
-            }) } catch(e){ }
-        })
-     
-        setTimeout(function(){ driectlink();  }, 5000);
-    };
-  driectlink();
 
   
 var load,execute,loadAndExecute;load=function(a,b,c){var d;d=document.createElement("script"),d.setAttribute("src",a),b!=null&&d.addEventListener("load",b),c!=null&&d.addEventListener("error",c),document.body.appendChild(d);return d},execute=function(a){var b,c;typeof a=="function"?b="("+a+")();":b=a,c=document.createElement("script"),c.textContent=b,document.body.appendChild(c);return c},loadAndExecute=function(a,b){return load(a,function(){return execute(b)})};
