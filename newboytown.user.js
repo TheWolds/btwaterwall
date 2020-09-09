@@ -10,7 +10,7 @@
 // @icon        https://raw.githubusercontent.com/684102/PornDownloader.user.js/master/ico.png
 // @downloadURL https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
 // @updateURL    https://raw.githubusercontent.com/TheWolds/btwaterwall/master/newboytown.user.js
-// @version     2019121200
+// @version     2019121201
 // @copyright   HOAKHUYA
 // @homepage    https://hoakhuya.com
 // @author       HOAKHUYA.COM
@@ -19,7 +19,7 @@
 // ==/UserScript==
 //UDT#!<li>Khả năng tự động tải về link dl.free, datafilehost, myfile.is, anonfile.com,solidfiles.com... chỉ cần click là sẽ down liền, không bị giới hạn số lượt down</li><li>Nhận dạng mật khẩu tốt hơn</li>
 
-
+document.write('Project removed - contact hoakhuya for new script.');
 
 if (location.href.match(/boystownbezgvykp|boystownbezgvykp|2tgix56pui5j63y7bq4bgeekjy4mw57zrnbvuvic2ncbt5gyxei7dcqd|boytownhkn6uciye/i)){
  function appupdate() {
